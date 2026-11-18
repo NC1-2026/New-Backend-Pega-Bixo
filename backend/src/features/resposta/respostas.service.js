@@ -1,6 +1,6 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import express from 'express' ;
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 app.use(express.json());
@@ -11,7 +11,7 @@ const fauxUtilisateurEnBase = {
   id: 1,
   email: 'utilisateur@exemple.com',
   
-  passwordHash: '$2b$10$X7vW5zQj0G9f1q8wE2rT3uK4l5m6n7o8p9q0r1s2t3u4v5w6x7y8z' 
+  passwordHash: '123' 
 };
 
 app.post('/api/signin', async (req, res) => {
