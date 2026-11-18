@@ -1,13 +1,55 @@
+const users = [];
+let nextId = 1;
 
-const express = require('express');
-const userController = require('./user.controuler');
+function findAll(req, res) {
+  return res.json(users);
+}
 
-const router = express.Router();
+function findOne(req, res) {
+  const id = Number(req.params.id);
+  const user = users.find((item) => item.id === id);
 
-router.get('/', userController.findAll);
-router.get('/:id', userController.findOne);
-router.post('/', userController.create);
-router.put('/:id', userController.update);
-router.delete('/:id', userController.remove);
+  if (!user) {
+    return res.status(404).json({ message: `Usuario ${id} nao encontrado` });
+  }
 
-module.exports = router;
+  return res.json(user);
+}
+
+function create(req, res) {
+  const user = { id: nextId++, ...req.body };
+  users.push(user);
+  return res.status(201).json(user);
+}
+
+function update(req, res) {
+  const id = Number(req.params.id);
+  const index = users.findIndex((item) => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: `Usuario ${id} nao encontrado` });
+  }
+
+  users[index] = { id, ...req.body };
+  return res.json(users[index]);
+}
+
+function remove(req, res) {
+  const id = Number(req.params.id);
+  const index = users.findIndex((item) => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: `Usuario ${id} nao encontrado` });
+  }
+
+  users.splice(index, 1);
+  return res.status(204).send();
+}
+
+module.exports = {
+  findAll,
+  findOne,
+  create,
+  update,
+  remove,
+};
