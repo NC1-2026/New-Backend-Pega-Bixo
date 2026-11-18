@@ -1,10 +1,22 @@
 import prisma from '../../../core/database/prisma.client.js';
 //animal
-export async function criarAnimal({ nome, descricao }) {
-  return prisma.animal.create({
-    data: { nome, descricao: { create: descricao } },
-    include: { descricao: true },
-  });
+export async function criarAnimal({ data }) { 
+   prisma.animal.create({
+        data,
+        select: {
+                id : true,
+                nome:true,
+                nomesRegionais: true,
+                nomeCientifico: true,
+                comportamento: true,
+                tipoAlimentacao: true,
+                descricaoAlimentacao: true,
+                statusConservacao: true,
+                informacoesAdicionais: true,
+                imagemUrl: true,
+                atualizadoEm: true,
+        },
+    });
 }
 
 export async function buscarAnimalPorNome(nome) {
@@ -21,40 +33,8 @@ export async function buscarAnimalPorId(id) {
 }
 
 
-//caracteristicas
-
-
-
-const AnimaisRepository = {
-    async criar({
-        nome,
-        nomesRegionais = [],
-        nomeCientifico,
-        comportamento,
-        tipoAlimentacao,
-        descricaoAlimentacao,
-        statusConservacao,
-        informacoesAdicionais = [],
-        imagemUrl = null,
-    }) {
-        return prisma.animal.create({
-            data: {
-                nome,
-                nomesRegionais,
-                nomeCientifico,
-                comportamento,
-                tipoAlimentacao,
-                descricaoAlimentacao,
-                statusConservacao,
-                informacoesAdicionais,
-                imagemUrl,
-                atualizadoEm: new Date(),
-            },
-        });
-    },
-
     // Lista todos os animais, por alimentação ou status de conservação
-    async listar({ tipoAlimentacao, statusConservacao } = {}) {
+export async function listar({ tipoAlimentacao, statusConservacao } = {}) {
         return prisma.animal.findMany({
             where: {
                 ...(tipoAlimentacao && { tipoAlimentacao }),
@@ -65,21 +45,21 @@ const AnimaisRepository = {
     },
 
     // Busca um animal específico pelo ID
-    async buscarPorId(id) {
+    export async function buscarPorId(id) {
         return prisma.animal.findUnique({
             where: { id },
         });
     },
 
     // Busca um animal pelo nome científico
-    async buscarPorNomeCientifico(nomeCientifico) {
+    export async function buscarPorNomeCientifico(nomeCientifico) {
         return prisma.animal.findUnique({
             where: { nomeCientifico },
         });
     },
 
     // Atualiza os dados e características de um animal existente
-    async atualizar(
+    export async function atualizar(
         id,
         {
             nome,
@@ -108,40 +88,8 @@ const AnimaisRepository = {
                 atualizadoEm: new Date(),
             },
         });
-    },
 
-    // Adiciona uma nova característica
-    async adicionarCaracteristicaAdicional(id, novaInformacao) {
-        return prisma.animal.update({
-            where: { id },
-            data: {
-                informacoesAdicionais: {
-                    push: novaInformacao,
-                },
-                atualizadoEm: new Date(),
-            },
-        });
-    },
 
-    // Adiciona um novo nome regional sem apagar os anteriores
-    async adicionarNomeRegional(id, novoNomeRegional) {
-        return prisma.animal.update({
-            where: { id },
-            data: {
-                nomesRegionais: {
-                    push: novoNomeRegional,
-                },
-                atualizadoEm: new Date(),
-            },
-        });
-    },
-
-    // Deleta um animal específico pelo Id
-    async deletar(id) {
-        return prisma.animal.delete({
-            where: { id },
-        });
-    },
 };
 
-export default AnimaisRepositor
+export { criarAnimal, buscarAnimalPorNome, buscarAnimalPorId, listar, buscarPorId, buscarPorNomeCientifico, atualizar }
