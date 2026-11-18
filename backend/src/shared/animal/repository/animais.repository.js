@@ -42,21 +42,21 @@ export async function listar({ tipoAlimentacao, statusConservacao } = {}) {
             },
             orderBy: { nome: 'asc' },
         });
-    },
+    }
 
     // Busca um animal específico pelo ID
     export async function buscarPorId(id) {
         return prisma.animal.findUnique({
             where: { id },
         });
-    },
+    }
 
     // Busca um animal pelo nome científico
     export async function buscarPorNomeCientifico(nomeCientifico) {
         return prisma.animal.findUnique({
             where: { nomeCientifico },
         });
-    },
+    }
 
     // Atualiza os dados e características de um animal existente
     export async function atualizar(
