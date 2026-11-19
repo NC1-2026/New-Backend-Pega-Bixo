@@ -1,4 +1,4 @@
-import 'dotenv/config';
+/* import 'dotenv/config';
 import express from 'express';
 
 import findAnimaisRouter from './features/router.findAnimais.js';
@@ -18,4 +18,13 @@ app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
 
-export default app;
+export default app; */
+
+
+import listAnimaisRouter from './features/router.listAnimais.js';
+
+app.use('/', listAnimaisRouter);
+
+import findAnimaisRouter from './features/router.findAnimais.js';
+
+app.use('/', findAnimaisRouter);
