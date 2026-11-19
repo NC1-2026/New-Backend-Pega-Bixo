@@ -1,12 +1,11 @@
-const express = require('express');
-const userController = require('./user.controuler');
+function requireAdmin(req, res, next) {
+  if (!req.user || req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Acesso restrito ao administrador' });
+  }
 
-const router = express.Router();
+  return next();
+}
 
-router.get('/', userController.findAll);
-router.get('/:id', userController.findOne);
-router.post('/', userController.create);
-router.put('/:id', userController.update);
-router.delete('/:id', userController.remove);
-
-module.exports = router;
+module.exports = {
+  requireAdmin,
+};
