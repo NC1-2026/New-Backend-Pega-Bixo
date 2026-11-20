@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nome_popular": "Anta-brasileira",
+    "nome_cientifico": "Tapirus terrestris",
+    "classe": "Mammalia",
+    "habitat": "Florestas tropicais, áreas alagadas e proximidades de rios.",
+    "descricao": "É o maior mamífero terrestre nativo do Brasil, podendo pesar até 300 kg. Possui um focinho alongado e flexível em forma de pequena tromba, adaptado para agarrar folhas e frutos. É excelente nadadora e atua como importante dispersora de sementes na floresta."
+  },
+  {
+    "id": 2,
+    "nome_popular": "Anu-coroca",
+    "nome_cientifico": "Crotophaga major",
+    "classe": "Aves",
+    "habitat": "Matas ciliares, manguezais, igapós e bordas de rios e lagos.",
+    "descricao": "Ave de plumagem azul-escura metálica com cauda longa e olhos claros marcantes. Vive em bandos barulhentos e tem o hábito curioso de nidificação comunitária, onde várias fêmeas colocam ovos no mesmo ninho e cuidam juntas dos filhotes."
+  },
+  {
+    "id": 3,
+    "nome_popular": "Aranha-golias",
+    "nome_cientifico": "Theraphosa blondi",
+    "classe": "Arachnida",
+    "habitat": "Tocas escavadas no solo úmido de florestas tropicais densas.",
+    "descricao": "Considerada a maior aranha do mundo em massa corporal, podendo atingir até 30 cm de envergadura com as pernas estendidas. Alimenta-se de insetos, pequenos roedores, sapos e até pequenas aves. Apesar do tamanho, seu veneno não é fatal para humanos, mas seus pelos urticantes causam forte irritação."
+  },
+  {
+    "id": 4,
+    "nome_popular": "Candiru",
+    "nome_cientifico": "Vandellia cirrhosa",
+    "classe": "Actinopterygii",
+    "habitat": "Rios de águas barrentas e fundos arenosos da bacia amazônica.",
+    "descricao": "Pequeno peixe-gato de corpo alongado e quase translúcido. É um parasita hematófago que se aloja nas brânquias de peixes maiores para sugar sangue, guiando-se por sinais químicos liberados na água pela respiração de seus hospedeiros."
+  },
+  {
+    "id": 5,
+    "nome_popular": "Coruja-orelhuda",
+    "nome_cientifico": "Asio clamator",
+    "classe": "Aves",
+    "habitat": "Campos abertos, bordas de florestas, cerrados e áreas rurais.",
+    "descricao": "Ave de rapina noturna facilmente reconhecida pelos longos tufos de penas na cabeça que lembram orelhas e pelo disco facial branco contornado de preto. Caça pequenos mamíferos, aves e insetos grandes durante a noite."
+  },
+  {
+    "id": 6,
+    "nome_popular": "Iguana-verde",
+    "nome_cientifico": "Iguana iguana",
+    "classe": "Reptilia",
+    "habitat": "Copas de árvores próximas a cursos d'água em florestas tropicais.",
+    "descricao": "Grande lagarto arborícola e herbívoro que pode ultrapassar 1,5 metro de comprimento contando a cauda. Possui uma fileira de espinhos ao longo do dorso e uma barbela desenvolvida sob o queixo. É ótima nadadora e mergulha na água para escapar de predadores."
+  },
+  {
+    "id": 7,
+    "nome_popular": "Jacamim-de-costas-cinzentas",
+    "nome_cientifico": "Psophia crepitans",
+    "classe": "Aves",
+    "habitat": "Solo de florestas primárias de terra firme na Amazônia.",
+    "descricao": "Ave terrestre de pernas longas, pescoço curvo e plumagem escura com uma mancha cinza característica nas costas. Desloca-se em grupos pelo chão da floresta buscando frutos caídos e insetos, emitindo vocalizações graves e ressonantes."
+  },
+  {
+    "id": 8,
+    "nome_popular": "Jacaré-tinga",
+    "nome_cientifico": "Caiman crocodilus",
+    "classe": "Reptilia",
+    "habitat": "Rios, lagos, igarapés e áreas pantanosas.",
+    "descricao": "Réptil de porte médio (geralmente entre 1,5 e 2,5 metros) com coloração esverdeada ou amarelada e uma crista óssea característica entre os olhos. Possui dieta variada baseada em peixes, crustáceos, anfíbios e pequenas aves."
+  },
+  {
+    "id": 9,
+    "nome_popular": "Morcego-pescador",
+    "nome_cientifico": "Noctilio leporinus",
+    "classe": "Mammalia",
+    "habitat": "Cavernas, ocos de árvores e construções próximas a rios e lagos.",
+    "descricao": "Morcego de grande porte especializado na pesca. Utiliza a ecolocalização para detectar ondulações na superfície da água causadas por peixes e usa suas garras longas e afiadas para capturar as presas em pleno voo rasante."
+  },
+  {
+    "id": 10,
+    "nome_popular": "Uacari-branco",
+    "nome_cientifico": "Cacajao calvus",
+    "classe": "Mammalia",
+    "habitat": "Florestas de várzea (áreas sazonalmente alagadas) da Amazônia.",
+    "descricao": "Primata inconfundível pela face completamente desprovida de pelos e de cor vermelho-intenso, contrastando com a pelagem longa e esbranquiçada do corpo. Possui cauda curta (rara entre macacos sul-americanos) e alimenta-se principalmente de sementes duras e frutos."
+  }
+]
