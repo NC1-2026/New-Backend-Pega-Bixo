@@ -1,5 +1,5 @@
 // importa o repositorio de perguntas
-import PerguntasRepository from '../repository/perguntas.repositorios.js';
+import PerguntasRepository from '../../shared/pergunta/repository/perguntas.repository.js';
 
 // service de perguntas do quiz
 // aqui ficam as regras e validacoes, o banco fica no repositorio
