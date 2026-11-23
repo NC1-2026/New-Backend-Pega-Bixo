@@ -1,4 +1,4 @@
-import { listarAnimais } from './services/listAnimais.js';
+import { listarAnimais } from './list_animais.js';
 
 export async function listAnimaisController(req, res) {
   try {
