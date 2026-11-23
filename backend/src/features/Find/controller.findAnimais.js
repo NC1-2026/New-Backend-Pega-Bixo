@@ -1,4 +1,4 @@
-import { buscarAnimalPorId } from './services/findAnimais.js';
+import { buscarAnimalPorId } from './find_animais.js';
 
 export async function findAnimalController(req, res) {
   try {
