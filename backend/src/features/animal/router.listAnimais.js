@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 
-import findAnimaisRouter from './features/router.findAnimais.js';
-import listAnimaisRouter from './features/router.listAnimais.js';
+import findAnimaisRouter from '../Find/router.findAnimais.js';
+import listAnimaisRouter from '../Lista/router.listAnimais.js';
 
 const app = express();
 
