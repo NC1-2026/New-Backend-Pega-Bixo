@@ -1,4 +1,4 @@
-import { buscarAnimalPorId } from '../../shared/animal/repository/animal.repository.js';
+import { buscarAnimalPorId } from '../../shared/animal/repository/animais.repository.js';
 
 function erro(status, mensagem) {
   const e = new Error(mensagem);

@@ -5,10 +5,10 @@ import prisma from '../../../core/database/prisma.client.js';
 // aqui fica só a parte do banco de dados das respostas
 const RespostasRepository = {
     // cria uma resposta avulsa e vincula a uma pergunta existente
-    async criar({ resposta, correta = false, perguntaId }) {
+    async criar({ texto, correta = false, perguntaId }) {
         return prisma.resposta.create({
             data: {
-                resposta, // texto da resposta
+                texto,
                 correta, // booleano indicando se é a resposta certa
                 perguntaId, // ID da pergunta à qual essa resposta pertence
             },

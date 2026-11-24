@@ -1,27 +1,25 @@
-import { buscarPorTermo } from '../shared/animal/repository/animais.repository.js';
+import prisma from '../../../core/database/prisma.client.js';
 
-const MIN_CARACTERES = 2;
-const MAX_CARACTERES = 50;
-const LIMITE_PADRAO = 8;
-const LIMITE_MAXIMO = 20;
-
-export async function sugerirAnimais(termo, limite) {
-  // 1. Normalizar o texto: remover espaços das pontas e repetidos no meio
-  const texto = String(termo ?? '').trim().replace(/\s+/g, ' ');
-
-  // 2. Regra: texto curto demais não vale uma consulta ao banco
-  if (texto.length < MIN_CARACTERES) return [];
-
-  // 3. Regra: texto longo demais é rejeitado
-  if (texto.length > MAX_CARACTERES) {
-    const erro = new Error(`O termo deve ter no máximo ${MAX_CARACTERES} caracteres`);
+export async function buscarAnimalPorId(id) {
+  // 1. Validar: o id precisa ser um inteiro positivo
+  const idNumero = Number(id);
+  if (!Number.isInteger(idNumero) || idNumero <= 0) {
+    const erro = new Error('ID inválido');
     erro.status = 400;
     throw erro;
   }
 
-  // 4. Regra: limitar a quantidade de resultados
-  const limiteFinal = Math.min(Number(limite) || LIMITE_PADRAO, LIMITE_MAXIMO);
+  // 2. Buscar no banco
+  const animal = await prisma.animal.findUnique({
+    where: { id: idNumero },
+  });
 
-  // 5. Delegar a consulta ao repository
-  return buscarPorTermo(texto, limiteFinal);
+  // 3. Animal inexistente vira erro 404
+  if (!animal) {
+    const erro = new Error('Animal não encontrado');
+    erro.status = 404;
+    throw erro;
+  }
+
+  return animal;
 }
