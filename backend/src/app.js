@@ -30,16 +30,20 @@ import respostasRouter from './features/resposta/respostas.router.js';
 
 const app = express();
 
-const PORT = 8081;
+const PORT = process.env.PORT || 8081;
 
 app.use(express.json());
 
 app.use('/perguntas', perguntarouter);
 
-app.use('/listanimais', listAnimaisController);
-
 app.use('/criaranimais', criar);
 
-app.use('/animais/:id', findAnimalController);
+app.use('/', findAnimalController);
 
 app.use('/respostas', respostasRouter);
+
+app.use('/listanimais', listAnimaisController);
+
+app.listen(PORT, () => {
+  console.log(`Servidor ouvindo na porta ${PORT}`);
+});
