@@ -5,10 +5,10 @@ import prisma from '../../../core/database/prisma.client.js';
 // aqui fica so a parte do banco de dados
 const PerguntasRepository = {
   // cria a pergunta ja com as respostas dela
-  async criar({ texto, respostas = [] }) {
+  async criar({ pergunta, respostas = [] }) {
     return prisma.pergunta.create({
       data: {
-        texto,
+        pergunta,
         respostas: {
           create: respostas,
         },

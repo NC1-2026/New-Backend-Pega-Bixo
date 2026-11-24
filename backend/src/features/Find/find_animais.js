@@ -1,4 +1,4 @@
-import { buscarPorTermo } from '../repositories/animal.repository.js';
+import { buscarPorTermo } from '../shared/animal/repository/animais.repository.js';
 
 const MIN_CARACTERES = 2;
 const MAX_CARACTERES = 50;

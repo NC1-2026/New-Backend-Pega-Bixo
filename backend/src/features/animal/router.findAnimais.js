@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { sugerirAnimais } from '../services/find_animais.js';
+import { sugerirAnimais } from '../Find/find_animais.js';
 
 const router = Router();
 
