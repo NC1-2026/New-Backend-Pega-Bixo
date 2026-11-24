@@ -1,4 +1,4 @@
-import prisma from '../../../core/database/prisma.client.js';
+import prisma from '../../core/database/prisma.client.js';
 
 export async function buscarAnimalPorId(id) {
   // 1. Validar: o id precisa ser um inteiro positivo
