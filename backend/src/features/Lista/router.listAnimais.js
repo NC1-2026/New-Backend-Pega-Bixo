@@ -3,6 +3,6 @@ import { listAnimaisController } from './controller.listAnimais.js';
 
 const router = Router();
 
-router.get('/animais', listAnimaisController);
+router.get('/listanimais', listAnimaisController);
 
 export default router;
