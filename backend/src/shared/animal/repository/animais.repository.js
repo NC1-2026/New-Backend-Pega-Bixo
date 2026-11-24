@@ -1,4 +1,4 @@
-import prisma from '../../../core/database/prisma.client.js';
+import prisma from '../../core/database/prisma.client.js';
 //animal
 export async function criarAnimal({ data }) { 
    prisma.animal.create({
