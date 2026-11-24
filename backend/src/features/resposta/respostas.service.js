@@ -1,49 +1,105 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+// importa os repositorios (estao na pasta shared)
+import RespostasRepository from '../../shared/resposta/repository/respostas.repository.js';
+import PerguntasRepository from '../../shared/pergunta/repository/perguntas.repository.js';
 
-const app = express();
-app.use(express.json());
+// service de respostas do quiz
+// aqui ficam as regras e validacoes, o banco fica no repositorio
+function erro(status, mensagem) {
+  const e = new Error(mensagem);
+  e.status = status;
+  return e;
+}
 
-const JWT_SECRET = 'votre_cle_secrete_ultra_securisee';
+// converte o id pra numero e confere se eh valido
+function validarId(valor, nome) {
+  const id = Number(valor);
 
-const fauxUtilisateurEnBase = {
-  id: 1,
-  email: 'utilisateur@exemple.com',
-  
-  passwordHash: '$2b$10$X7vW5zQj0G9f1q8wE2rT3uK4l5m6n7o8p9q0r1s2t3u4v5w6x7y8z' 
+  if (!Number.isInteger(id) || id <= 0) {
+    throw erro(400, `O ${nome} precisa ser um numero valido.`);
+  }
+
+  return id;
+}
+
+const RespostasService = {
+  // cria uma resposta e vincula a uma pergunta que ja existe
+  async criar({ texto, correta = false, perguntaId }) {
+    // a resposta precisa ter texto
+    if (typeof texto !== 'string' || !texto.trim()) {
+      throw erro(400, 'A resposta precisa ter um texto.');
+    }
+
+    const id = validarId(perguntaId, 'id da pergunta');
+
+    // confere se a pergunta existe antes de criar
+    const pergunta = await PerguntasRepository.buscarPorId(id);
+    if (!pergunta) {
+      throw erro(404, 'Pergunta nao encontrada.');
+    }
+
+    // a pergunta so pode ter 1 resposta correta
+    if (correta === true && pergunta.respostas.some((r) => r.correta)) {
+      throw erro(409, 'Essa pergunta ja tem uma resposta correta.');
+    }
+
+    return RespostasRepository.criar({
+      texto: texto.trim(),
+      correta: correta === true,
+      perguntaId: id,
+    });
+  },
+
+  // lista as respostas de uma pergunta
+  async listarPorPergunta(perguntaId) {
+    const id = validarId(perguntaId, 'id da pergunta');
+
+    const pergunta = await PerguntasRepository.buscarPorId(id);
+    if (!pergunta) {
+      throw erro(404, 'Pergunta nao encontrada.');
+    }
+
+    return RespostasRepository.listarPorPergunta(id);
+  },
+
+  // atualiza o texto e/ou se a resposta eh a correta
+  async atualizar(idRecebido, { texto, correta } = {}) {
+    const id = validarId(idRecebido, 'id da resposta');
+
+    if (texto === undefined && correta === undefined) {
+      throw erro(400, 'Envie o texto ou o campo correta para atualizar.');
+    }
+
+    if (texto !== undefined && (typeof texto !== 'string' || !texto.trim())) {
+      throw erro(400, 'A resposta precisa ter um texto.');
+    }
+
+    if (correta !== undefined && typeof correta !== 'boolean') {
+      throw erro(400, 'O campo correta precisa ser true ou false.');
+    }
+
+    try {
+      return await RespostasRepository.atualizar(id, {
+        ...(texto !== undefined && { texto: texto.trim() }),
+        ...(correta !== undefined && { correta }),
+      });
+    } catch (e) {
+      // P2025 = o prisma nao achou a resposta
+      if (e.code === 'P2025') throw erro(404, 'Resposta nao encontrada.');
+      throw e;
+    }
+  },
+
+  // deleta uma resposta
+  async deletar(idRecebido) {
+    const id = validarId(idRecebido, 'id da resposta');
+
+    try {
+      return await RespostasRepository.deletar(id);
+    } catch (e) {
+      if (e.code === 'P2025') throw erro(404, 'Resposta nao encontrada.');
+      throw e;
+    }
+  },
 };
 
-app.post('/api/signin', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    
-    if (email !== fauxUtilisateurEnBase.email) {
-      return res.status(401).json({ error: 'Email ou mot de passe incorrect.' });
-    }
-
-    const passwordValid = await bcrypt.compare(password, fauxUtilisateurEnBase.passwordHash);
-    if (!passwordValid) {
-      return res.status(401).json({ error: 'Email ou mot de passe incorrect.' });
-    }
-
-    const token = jwt.sign(
-      { userId: fauxUtilisateurEnBase.id, email: fauxUtilisateurEnBase.email },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    return res.status(200).json({
-      message: 'Connexion réussie',
-      token: token
-    });
-
-  } catch (error) {
-    return res.status(500).json({ error: 'Erreur interne du serveur.' });
-  }
-});
-
-app.listen(3000, () => {
-  console.log('Serveur backend démarré sur le port 3000');
-});
+export default RespostasService;

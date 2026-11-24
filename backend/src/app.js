@@ -5,6 +5,8 @@ import findAnimaisRouter from './features/router.findAnimais.js';
 import listAnimaisRouter from './features/router.listAnimais.js';
 // NOVO: router de perguntas
 import perguntasRouter from './features/pergunta/perguntas.router.js';
+// NOVO: router de respostas
+import respostasRouter from './features/resposta/respostas.router.js';
 
 const app = express();
 
@@ -16,6 +18,9 @@ app.use('/', listAnimaisRouter);
 
 // NOVO: rotas de perguntas
 app.use('/perguntas', perguntasRouter);
+
+// NOVO: rotas de respostas
+app.use('/respostas', respostasRouter);
 
 const PORT = process.env.PORT || 3000;
 
