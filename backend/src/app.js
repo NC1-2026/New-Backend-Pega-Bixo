@@ -26,7 +26,7 @@ import listAnimaisController from './features/Lista/router.listAnimais.js';
 import perguntarouter from './features/pergunta/perguntas.router.js';
 import criar from './features/animal/animal.router.js';
 import findAnimalController from './features/Find/router.findAnimais.js';
-
+import respostasRouter from './features/resposta/respostas.router.js';
 
 const app = express();
 
@@ -41,3 +41,5 @@ app.use('/listanimais', listAnimaisController);
 app.use('/criaranimais', criar);
 
 app.use('/animais/:id', findAnimalController);
+
+app.use('/respostas', respostasRouter);

@@ -1,4 +1,4 @@
-import { criarAnimal, buscarAnimalPorNome } from '../../shared/animal/repository/animal.repository.js';
+import { criarAnimal, buscarAnimalPorNome } from '../../shared/animal/repository/animais.repository.js';
 
 const CAMPOS = {
   especie: 'a espécie',
