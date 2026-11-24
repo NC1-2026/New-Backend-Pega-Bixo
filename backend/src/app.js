@@ -20,11 +20,26 @@ app.listen(PORT, () => {
 
 export default app; */
 
-
+import 'dotenv/config';
+import express from "express";
 import listAnimaisRouter from './features/router.listAnimais.js';
-
-app.use('/', listAnimaisRouter);
-
 import findAnimaisRouter from './features/router.findAnimais.js';
+import criar from './features/animal/animal.router.js';
+import findAnimalController from './features/Find/router.findAnimais.js';
 
-app.use('/', findAnimaisRouter);
+
+const app = express();
+
+const PORT = 8081;
+
+app.use(express.json());
+
+
+
+app.use('/listanimais', listAnimaisRouter);
+
+app.use('/findanimais', findAnimaisRouter);
+
+app.use('/criaranimais', criar);
+
+app.use('/animais/:id', findAnimalController);
