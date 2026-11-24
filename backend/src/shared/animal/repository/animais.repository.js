@@ -1,22 +1,23 @@
 import prisma from '../../../core/database/prisma.client.js';
 //animal
-function criarAnimal({ data }) { 
-   prisma.animal.create({
-        data,
-        select: {
-                id : true,
-                nome:true,
-                nomesRegionais: true,
-                nomeCientifico: true,
-                comportamento: true,
-                tipoAlimentacao: true,
-                descricaoAlimentacao: true,
-                statusConservacao: true,
-                informacoesAdicionais: true,
-                imagemUrl: true,
-                atualizadoEm: true,
-        },
-    });
+function criarAnimal({ data }) {
+  return prisma.animal.create({
+    data,
+    select: {
+      id: true,
+      nome: true,
+      nomesRegionais: true,
+      nomeCientifico: true,
+      comportamento: true,
+      tipoAlimentacao: true,
+      descricaoAlimentacao: true,
+      statusConservacao: true,
+      informacoesAdicionais: true,
+      imagemUrl: true,
+      criadoEm: true,
+      atualizadoEm: true,
+    },
+  });
 }
 
 function buscarAnimalPorNome(nome) {
