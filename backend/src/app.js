@@ -27,10 +27,20 @@ import perguntarouter from './features/pergunta/perguntas.router.js';
 import criar from './features/animal/animal.router.js';
 import findAnimalController from './features/Find/router.findAnimais.js';
 import respostasRouter from './features/resposta/respostas.router.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const PORT = process.env.PORT || 8081;
 
 const app = express();
 
-const PORT = process.env.PORT || 8081;
+app.use(
+  '/imagens',
+  express.static(path.join(__dirname, '../public/imagens'), { maxAge: '7d' })
+);
+
 
 app.use(express.json());
 
