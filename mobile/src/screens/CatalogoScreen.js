@@ -74,7 +74,7 @@ export default function CatalogoScreen({ navigation }) {
       <View style={{ paddingHorizontal: 20, paddingTop: 12, gap: 14 }}>
         <View>
           <Text style={{ fontSize: 13, fontWeight: '600', letterSpacing: 0.5, color: cores.verde }}>
-            FAUNA BRASILEIRA
+            PEGA-BIXO
           </Text>
           <Text style={{ fontSize: 30, fontWeight: '800', color: cores.verdeEscuro }}>Catálogo</Text>
         </View>
