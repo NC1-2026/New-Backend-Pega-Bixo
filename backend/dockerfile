@@ -16,3 +16,5 @@ ENV PORT=8081
 EXPOSE 8081
 
 CMD ["sh", "-c", "npx prisma migrate deploy && node ./src/app.js"]
+
+COPY public ./public
