@@ -18,10 +18,11 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-image"
-    ]
+        "bundler": "metro",
+        "output": "single"
+      },
+    "experiments": {
+      "baseUrl": "/NOME-DO-REPO"
+    }
   }
 }
