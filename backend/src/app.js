@@ -20,6 +20,7 @@ app.listen(PORT, () => {
 
 export default app; */
 
+import cors from 'cors';
 import 'dotenv/config';
 import express from "express";
 import path from 'node:path';
@@ -39,6 +40,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 const PORT = process.env.PORT || 8081;
+app.use(cors());
 
 app.use(express.json());
 

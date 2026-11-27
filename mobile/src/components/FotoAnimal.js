@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Image } from 'expo-image';
 import { cores } from '../theme';
 
@@ -31,14 +31,20 @@ export default function FotoAnimal({ uri, style }) {
     );
   }
 
+  const source = {
+    uri: ajustar(uri),
+
+    // Cabeçalho personalizado somente em dispositivos nativos
+    ...(Platform.OS !== 'web' && {
+      headers: {
+        'User-Agent': 'FaunaBrasileiraApp/1.0 (projeto academico)',
+      },
+    }),
+  };
+
   return (
     <Image
-      source={{
-        uri: ajustar(uri),
-        headers: {
-          'User-Agent': 'FaunaBrasileiraApp/1.0 (projeto academico)',
-        },
-      }}
+      source={source}
       style={style}
       contentFit="cover"
       transition={200}
