@@ -35,7 +35,7 @@ export default function InicioScreen({ navigation }) {
         }}
       >
         <Text style={{ fontSize: 40, fontWeight: '800', lineHeight: 44, color: '#FFFFFF' }}>
-          {'PEGA-BIXO'}
+          {'PEGA-BICHO'}
         </Text>
         <Text style={{ marginTop: 12, fontSize: 16, color: cores.fundo }}>
           Conheça, aprenda e preserve!

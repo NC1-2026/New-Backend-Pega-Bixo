@@ -8,12 +8,12 @@ export default function SobreScreen() {
       <View style={{ padding: 20, gap: 16 }}>
         <View>
           <Text style={{ fontSize: 13, fontWeight: '600', letterSpacing: 0.5, color: cores.verde }}>
-            PEGA-BIXO
+            PEGA-BICHO
           </Text>
           <Text style={{ fontSize: 30, fontWeight: '800', color: cores.verdeEscuro }}>Sobre o Projeto</Text>
         </View>
         <Text style={{ fontSize: 16,fontWeight: '800', lineHeight: 26, color: cores.texto }}>
-          Pega Bixo — Aprenda sobre a fauna da Amazônia!
+          Pega Bicho — Aprenda sobre a fauna da Amazônia!
 
 Desenvolvido pela turma NCI do 3º período do curso de T.I. para a 21ª Feira Tecnológica da FUCAPI, o Pega Bixo nasceu com o objetivo de aproximar crianças e turistas da biodiversidade amazônica.
 
