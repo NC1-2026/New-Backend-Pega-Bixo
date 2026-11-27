@@ -34,7 +34,15 @@ import respostasRouter from './features/resposta/respostas.router.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+<<<<<<< HEAD
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+=======
+// Identifica o diretório onde está este arquivo
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+>>>>>>> 34cf45f80cf7c4d92d0c740a931c979c5cc875ca
 
 const PORT = process.env.PORT || 8081;
 
